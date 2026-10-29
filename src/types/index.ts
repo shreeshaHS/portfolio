@@ -39,6 +39,9 @@ export interface Certification {
   topics: string[];
   credentialBadge: string;
   color: string;
+  certificateUrl?: string;
+  credentialId?: string;
+  verifyUrl?: string;
 }
 
 export interface EducationItem {
@@ -60,4 +63,19 @@ export interface ExperienceItem {
   location?: string;
   responsibilities: string[];
   impactNotes: string[];
+  experienceLetterUrl?: string;
+}
+
+export interface DocumentPreviewData {
+  title: string;
+  subtitle?: string;
+  issuer?: string;
+  period?: string;
+  fileUrl: string;
+  downloadName: string;
+  badge: string;
+  color?: string;
+  topics?: string[];
+  description?: string;
+  type: 'certificate' | 'experience';
 }

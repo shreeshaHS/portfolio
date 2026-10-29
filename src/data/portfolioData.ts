@@ -167,7 +167,9 @@ export const CERTIFICATIONS: Certification[] = [
     description: 'Rigorous coursework covering distributed systems, virtualization, cloud service models (IaaS, PaaS, SaaS), cloud storage, and resource provisioning.',
     topics: ['Distributed Systems', 'Virtualization', 'Resource Scheduling', 'Cloud Security & Storage'],
     credentialBadge: 'NPTEL Verified',
-    color: '#38bdf8'
+    color: '#38bdf8',
+    certificateUrl: '/documents/certificates/cloud-computing-nptel.pdf',
+    credentialId: 'NPTEL23CS-CLOUD'
   },
   {
     id: 'nlp-nptel',
@@ -178,7 +180,9 @@ export const CERTIFICATIONS: Certification[] = [
     description: 'In-depth study of text preprocessing, tokenization, language models, syntactic parsing, semantic representations, and machine learning for textual data.',
     topics: ['Tokenization & Stemming', 'N-gram Models', 'Semantic Parsing', 'Sequence Modeling'],
     credentialBadge: 'NPTEL Verified',
-    color: '#818cf8'
+    color: '#818cf8',
+    certificateUrl: '/documents/certificates/nlp-nptel.pdf',
+    credentialId: 'NPTEL23CS-NLP'
   },
   {
     id: 'data-analytics-nasscom',
@@ -189,7 +193,9 @@ export const CERTIFICATIONS: Certification[] = [
     description: 'Industry-standard training covering exploratory data analysis, business intelligence, data preparation, statistical reasoning, and actionable visualization.',
     topics: ['Exploratory Data Analysis', 'Data Cleaning', 'Statistical Modeling', 'Visualization Dashboards'],
     credentialBadge: 'NASSCOM Certified',
-    color: '#34d399'
+    color: '#34d399',
+    certificateUrl: '/documents/certificates/data-analytics-nasscom.pdf',
+    credentialId: 'NASSCOM-FS-DA'
   }
 ];
 
@@ -250,6 +256,7 @@ export const EXPERIENCE_LIST: ExperienceItem[] = [
     impactNotes: [
       'Demonstrated high dependability, leadership under pressure, and process discipline.',
       'Honed time-management and team management skills directly transferable to agile software sprint cycles.'
-    ]
+    ],
+    experienceLetterUrl: '/documents/experience/navadurga-experience-letter.pdf'
   }
 ];

@@ -1,8 +1,14 @@
 import React from 'react';
 import { EDUCATION_LIST, EXPERIENCE_LIST } from '../data/portfolioData';
-import { GraduationCap, Briefcase, Calendar, MapPin, CheckCircle2, ChevronRight, Layers } from 'lucide-react';
+import { ExperienceItem } from '../types';
+import { GraduationCap, Briefcase, Calendar, MapPin, CheckCircle2, ChevronRight, Layers, Eye, Download, ShieldCheck } from 'lucide-react';
+import { playSound } from '../utils/sound';
 
-export const EducationExperience: React.FC = () => {
+interface EducationExperienceProps {
+  onViewExperienceLetter?: (exp: ExperienceItem) => void;
+}
+
+export const EducationExperience: React.FC<EducationExperienceProps> = ({ onViewExperienceLetter }) => {
   return (
     <section id="education" className="py-24 relative overflow-hidden">
       {/* Ambient background glows */}
@@ -134,6 +140,44 @@ export const EducationExperience: React.FC = () => {
                     Developed operational grit, cross-team accountability, and procedural discipline that translates directly into reliable code commits and software deployment schedules.
                   </p>
                 </div>
+
+                {/* Official Experience Letter Action */}
+                {exp.experienceLetterUrl && (
+                  <div className="pt-3 border-t border-white/5 space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      {onViewExperienceLetter && (
+                        <button
+                          onClick={() => {
+                            playSound('open');
+                            onViewExperienceLetter(exp);
+                          }}
+                          onMouseEnter={() => playSound('hover')}
+                          className="flex-1 py-2.5 px-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 hover:text-white border border-purple-500/20 hover:border-purple-500/40 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>View Experience Letter</span>
+                        </button>
+                      )}
+                      <a
+                        href={exp.experienceLetterUrl}
+                        download={`${exp.id}-letter.pdf`}
+                        onClick={() => playSound('click')}
+                        onMouseEnter={() => playSound('hover')}
+                        title="Download Experience Letter PDF"
+                        className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                      <span className="flex items-center gap-1 text-emerald-400">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        <span>Employer Verified</span>
+                      </span>
+                      <span className="text-slate-500">Official Record</span>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

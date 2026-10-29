@@ -1,9 +1,14 @@
 import React from 'react';
 import { CERTIFICATIONS } from '../data/portfolioData';
-import { Award, Cloud, Cpu, BarChart2, CheckCircle, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Certification } from '../types';
+import { Award, Cloud, Cpu, BarChart2, CheckCircle, ExternalLink, ShieldCheck, Eye, Download } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
-export const Certifications: React.FC = () => {
+interface CertificationsProps {
+  onViewCertificate?: (cert: Certification) => void;
+}
+
+export const Certifications: React.FC<CertificationsProps> = ({ onViewCertificate }) => {
   const getIcon = (id: string) => {
     switch (id) {
       case 'cloud-computing-nptel':
@@ -97,13 +102,44 @@ export const Certifications: React.FC = () => {
                 </div>
               </div>
 
-              {/* Verified Status Tag */}
-              <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 font-mono">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Curriculum Verified</span>
-                </span>
-                <span className="text-slate-500">{cert.platform}</span>
+              {/* Actions & Verified Status */}
+              <div className="space-y-3 pt-3 border-t border-white/5">
+                <div className="flex items-center gap-2">
+                  {onViewCertificate && cert.certificateUrl && (
+                    <button
+                      onClick={() => {
+                        playSound('open');
+                        onViewCertificate(cert);
+                      }}
+                      onMouseEnter={() => playSound('hover')}
+                      className="flex-1 py-2.5 px-3 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 hover:text-white border border-sky-500/20 hover:border-sky-500/40 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>View Certificate</span>
+                    </button>
+                  )}
+
+                  {cert.certificateUrl && (
+                    <a
+                      href={cert.certificateUrl}
+                      download={`${cert.id}.pdf`}
+                      onClick={() => playSound('click')}
+                      onMouseEnter={() => playSound('hover')}
+                      title="Download Certificate PDF"
+                      className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                  <span className="flex items-center gap-1 text-emerald-400">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Verified Credential</span>
+                  </span>
+                  <span className="text-slate-500">{cert.platform}</span>
+                </div>
               </div>
             </div>
           ))}
